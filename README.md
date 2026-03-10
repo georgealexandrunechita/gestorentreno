@@ -21,7 +21,6 @@ pip install -r requirements.txt  # si lo tienes
 pip install django
 
 
-[web:266]
 
 Puesta en marcha
 bash
@@ -30,7 +29,7 @@ python manage.py createsuperuser  # para acceder al admin (opcional)
 python manage.py runserver
 
 
-La aplicación estará disponible en http://127.0.0.1:8000/. [web:270]
+La aplicación estará disponible en http://127.0.0.1:8000/.
 
 Funcionalidad
 Registro y login de usuario usando el sistema de autenticación de Django.
