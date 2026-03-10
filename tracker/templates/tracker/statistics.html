@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block title %}Estadísticas{% endblock %}
+{% block content %}
+<h1>Estadísticas</h1>
+
+<canvas id="chart1"></canvas>
+<canvas id="chart2"></canvas>
+<canvas id="chart3"></canvas>
+<canvas id="chart4"></canvas>
+<canvas id="chart5"></canvas>
+
+<script>
+const labels1 = {{ labels1|safe }};
+const data1 = {{ data1|safe }};
+const labels2 = {{ labels2|safe }};
+const data2 = {{ data2|safe }};
+const labels3 = {{ labels3|safe }};
+const data3 = {{ data3|safe }};
+const labels4 = {{ labels4|safe }};
+const data4 = {{ data4|safe }};
+const labels5 = {{ labels5|safe }};
+const data5 = {{ data5|safe }};
+
+new Chart(document.getElementById('chart1'), {
+    type: 'pie',
+    data: {
+        labels: labels1,
+        datasets: [{
+            data: data1
+        }]
+    }
+});
+
+new Chart(document.getElementById('chart2'), {
+    type: 'bar',
+    data: {
+        labels: labels2,
+        datasets: [{
+            data: data2
+        }]
+    }
+});
+
+new Chart(document.getElementById('chart3'), {
+    type: 'line',
+    data: {
+        labels: labels3,
+        datasets: [{
+            data: data3
+        }]
+    }
+});
+
+new Chart(document.getElementById('chart4'), {
+    type: 'doughnut',
+    data: {
+        labels: labels4,
+        datasets: [{
+            data: data4
+        }]
+    }
+});
+
+new Chart(document.getElementById('chart5'), {
+    type: 'bar',
+    data: {
+        labels: labels5,
+        datasets: [{
+            data: data5
+        }]
+    }
+});
+</script>
+{% endblock %}
