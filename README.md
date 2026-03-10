@@ -1,6 +1,6 @@
 # Gestor de Entrenos
 
-Pequeña aplicación en Django para gestionar entrenamientos de un atleta (correr, etc.) como práctica de 2º DAW – Servidor. [web:266]
+Pequeña aplicación en Django para gestionar entrenamientos de un atleta (correr, etc.) como práctica de 2º DAW – Servidor.
 
 ## Requisitos
 
@@ -40,7 +40,7 @@ Creación y listado de entrenamientos (tipo, distancia, duración, notas).
 
 Vistas protegidas que requieren inicio de sesión.
 
-Página de estadísticas básicas de los entrenamientos. [web:270]
+Página de estadísticas básicas de los entrenamientos. 
 
 Tests
 El proyecto incluye tests unitarios para modelos y vistas básicas.
