@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block title %}Sesiones{% endblock %}
+
+{% block content %}
+<h1>Sesiones</h1>
+
+<div style="margin-bottom: 1rem;">
+    <a href="{% url 'session_create' %}"
+       style="padding: 0.5rem 1rem; background:#2563eb; color:white; text-decoration:none; border-radius:4px;">
+        Nueva sesión
+    </a>
+</div>
+
+<form method="get" style="margin-bottom:1rem; display:flex; gap:0.5rem; align-items:center;">
+    <label>Tipo:</label>
+    <select name="tipo">
+        <option value="">Todos</option>
+        {% for t,value in tipos_disponibles %}
+            <option value="{{ t }}" {% if tipo_filtrado == t %}selected{% endif %}>
+                {{ value }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <label>Orden:</label>
+    <select name="order">
+        <option value="-id" {% if order == "-id" or not order %}selected{% endif %}>Más recientes primero</option>
+        <option value="id" {% if order == "id" %}selected{% endif %}>Más antiguas primero</option>
+    </select>
+
+    <button type="submit">Filtrar</button>
+</form>
+
+{% if sessions %}
+    <table style="width:100%; border-collapse:collapse;">
+        <thead>
+        <tr>
+            <th style="text-align:left; border-bottom:1px solid #ddd; padding:0.5rem;">Fecha</th>
+            <th style="text-align:left; border-bottom:1px solid #ddd; padding:0.5rem;">Workout</th>
+            <th style="text-align:right; border-bottom:1px solid #ddd; padding:0.5rem;">Duración</th>
+            <th style="text-align:right; border-bottom:1px solid #ddd; padding:0.5rem;">FC media</th>
+            <th style="text-align:right; border-bottom:1px solid #ddd; padding:0.5rem;">Calorías</th>
+            <th style="text-align:center; border-bottom:1px solid #ddd; padding:0.5rem;">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for s in sessions %}
+            <tr>
+                <td style="padding:0.5rem; border-bottom:1px solid #f0f0f0;">
+                    <a href="{% url 'session_detail' s.id %}">
+                        {{ s.workout.fecha }}
+                    </a>
+                </td>
+                <td style="padding:0.5rem; border-bottom:1px solid #f0f0f0;">
+                    {{ s.workout.get_tipo_display }}
+                </td>
+                <td style="padding:0.5rem; border-bottom:1px solid #f0f0f0; text-align:right;">
+                    {{ s.duracion }}
+                </td>
+                <td style="padding:0.5rem; border-bottom:1px solid #f0f0f0; text-align:right;">
+                    {{ s.fc_media }}
+                </td>
+                <td style="padding:0.5rem; border-bottom:1px solid #f0f0f0; text-align:right;">
+                    {{ s.calorias }}
+                </td>
+                <td style="padding:0.5rem; border-bottom:1px solid #f0f0f0; text-align:center;">
+                    <a href="{% url 'session_detail' s.id %}">Ver</a> |
+                    <a href="{% url 'session_delete' s.id %}">Borrar</a>
+                </td>
+            </tr>

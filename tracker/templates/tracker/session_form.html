@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Sesión{% endblock %}
+{% block content %}
+<h1>Sesión</h1>
+<form method="post">
+    {% csrf_token %}
+    <label>Workout:</label>
+    <select name="workout_id">
+        {% for workout in workouts %}
+            <option value="{{ workout.id }}">{{ workout.fecha }} - {{ workout.get_tipo_display }}</option>
+        {% endfor %}
+    </select>
+    {% for field in form %}
+        <div>
+            {{ field.label_tag }}
+            {{ field }}
+            {% for error in field.errors %}
+                <p style="color:red;">{{ error }}</p>
+            {% endfor %}
+        </div>
+    {% endfor %}
+    <button type="submit">Guardar</button>
+</form>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Eliminar workout{% endblock %}
+{% block content %}
+<h1>¿Eliminar workout?</h1>
+<p>{{ workout }}</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Sí, eliminar</button>
+</form>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}Sesión {{ session.id }}{% endblock %}
+
+{% block content %}
+<h1>Detalle de la sesión</h1>
+
+<section style="margin-bottom:1.5rem;">
+    <h2>Datos de la sesión</h2>
+    <table style="border-collapse:collapse;">
+        <tr>
+            <th style="text-align:left; padding:0.25rem 0.5rem;">Workout</th>
+            <td style="padding:0.25rem 0.5rem;">
+                <a href="{% url 'workout_detail' session.workout.id %}">
+                    {{ session.workout.fecha }} – {{ session.workout.get_tipo_display }}
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <th style="text-align:left; padding:0.25rem 0.5rem;">Duración</th>
+            <td style="padding:0.25rem 0.5rem;">{{ session.duracion }}</td>
+        </tr>
+        <tr>
+            <th style="text-align:left; padding:0.25rem 0.5rem;">FC media</th>
+            <td style="padding:0.25rem 0.5rem;">{{ session.fc_media }}</td>
+        </tr>
+        <tr>
+            <th style="text-align:left; padding:0.25rem 0.5rem;">Calorías</th>
+            <td style="padding:0.25rem 0.5rem;">{{ session.calorias }}</td>
+        </tr>
+        <tr>
+            <th style="text-align:left; padding:0.25rem 0.5rem;">Notas</th>
+            <td style="padding:0.25rem 0.5rem;">{{ session.notas|default:"-" }}</td>
+        </tr>
+    </table>
+
+    <div style="margin-top:1rem;">
+        <a href="{% url 'session_list' %}">Volver a la lista de sesiones</a> |
+        <a href="{% url 'workout_detail' session.workout.id %}">Volver al workout</a> |
+        <a href="{% url 'session_delete' session.id %}"
+            style="padding:0.3rem 0.6rem; background:#dc2626; color:white; text-decoration:none; border-radius:4px;">
+            Borrar sesión
+        </a>
+    </div>
+</section>
+{% endblock %}

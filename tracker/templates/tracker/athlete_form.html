@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Atleta{% endblock %}
+{% block content %}
+<h1>Atleta</h1>
+<form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+        <div>
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.help_text %}<small>{{ field.help_text }}</small>{% endif %}
+            {% for error in field.errors %}
+                <p style="color:red;">{{ error }}</p>
+            {% endfor %}
+        </div>
+    {% endfor %}
+    <button type="submit">Guardar</button>
+</form>
+{% endblock %}

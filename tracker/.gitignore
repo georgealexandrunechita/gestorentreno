@@ -1,0 +1,25 @@
+# Python / Django
+*.pyc
+__pycache__/
+*.log
+
+# Base de datos local
+db.sqlite3
+
+# Entornos virtuales
+venv/
+env/
+.venv/
+
+# Archivos de entorno / secretos
+.env
+
+# Archivos de usuario / IDE
+.vscode/
+.idea/
+
+# Archivos del sistema (macOS)
+.DS_Store
+
+# Carpeta de media (si guardas subidas)
+media/

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Detalle atleta{% endblock %}
+{% block content %}
+<h1>{{ athlete.user.username }}</h1>
+<p>Fecha nacimiento: {{ athlete.fecha_nacimiento }}</p>
+<p>Peso: {{ athlete.peso }}</p>
+<p>Altura: {{ athlete.altura }}</p>
+<p>Email: {{ athlete.email_contacto }}</p>
+<a href="{% url 'athlete_update' athlete.id %}">Editar</a>
+{% endblock %}

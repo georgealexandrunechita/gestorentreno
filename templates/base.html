@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Gestor de entrenamientos{% endblock %}</title>
+</head>
+<body>
+<nav>
+    <a href="{% url 'workout_list' %}">Workouts</a>
+    <a href="{% url 'session_list' %}">Sesiones</a>
+    <a href="{% url 'statistics' %}">Estadísticas</a>
+    {% if user.is_authenticated %}
+        <a href="{% url 'athlete_list' %}">Atletas</a>
+        <span>{{ user.username }}</span>
+        <a href="{% url 'logout' %}">Logout</a>
+    {% else %}
+        <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+</nav>
+<hr>
+{% block content %}{% endblock %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>

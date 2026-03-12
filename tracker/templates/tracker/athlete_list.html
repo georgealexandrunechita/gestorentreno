@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Atletas{% endblock %}
+{% block content %}
+<h1>Atletas</h1>
+<a href="{% url 'athlete_create' %}">Crear atleta</a>
+<ul>
+    {% for athlete in athletes %}
+        <li>
+            <a href="{% url 'athlete_detail' athlete.id %}">{{ athlete.user.username }}</a>
+        </li>
+    {% empty %}
+        <li>No hay atletas.</li>
+    {% endfor %}
+</ul>
+{% if page_obj.has_other_pages %}
+<div>
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+    {% endif %}
+    <span>Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+    {% endif %}
+</div>
+{% endif %}
+{% endblock %}

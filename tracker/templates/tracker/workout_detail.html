@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block title %}Workout {{ workout.id }}{% endblock %}
+
+{% block content %}
+<h1>Detalle del workout</h1>
+
+<section style="margin-bottom:1.5rem;">
+    <h2>Resumen</h2>
+    <table style="border-collapse:collapse;">
+        <tr>
+            <th style="text-align:left; padding:0.25rem 0.5rem;">Fecha</th>
+            <td style="padding:0.25rem 0.5rem;">{{ workout.fecha }}</td>
+        </tr>
+        <tr>
+            <th style="text-align:left; padding:0.25rem 0.5rem;">Tipo</th>
+            <td style="padding:0.25rem 0.5rem;">{{ workout.get_tipo_display }}</td>
+        </tr>
+        <tr>
+            <th style="text-align:left; padding:0.25rem 0.5rem;">Distancia (km)</th>
+            <td style="padding:0.25rem 0.5rem;">{{ workout.distancia_km }}</td>
+        </tr>
+        <tr>
+            <th style="text-align:left; padding:0.25rem 0.5rem;">Duración</th>
+            <td style="padding:0.25rem 0.5rem;">{{ workout.duracion }}</td>
+        </tr>
+        <tr>
+            <th style="text-align:left; padding:0.25rem 0.5rem;">Notas</th>
+            <td style="padding:0.25rem 0.5rem;">{{ workout.notas|default:"-" }}</td>
+        </tr>
+    </table>
+
+    <div style="margin-top:1rem;">
+        <a href="{% url 'workout_update' workout.id %}"
+            style="padding:0.4rem 0.8rem; background:#2563eb; color:white; text-decoration:none; border-radius:4px;">
+            Editar
+        </a>
+        <a href="{% url 'workout_delete' workout.id %}"
+            style="padding:0.4rem 0.8rem; background:#dc2626; color:white; text-decoration:none; border-radius:4px; margin-left:0.5rem;">
+            Borrar
+        </a>
+        <a href="{% url 'workout_list' %}" style="margin-left:0.5rem;">Volver a la lista</a>
+    </div>
+</section>
+
+<section>
+    <h2>Sesiones de este workout</h2>
+
+    <div style="margin-bottom:0.5rem;">
+        <a href="{% url 'session_create' %}?workout={{ workout.id }}"
+            style="padding:0.4rem 0.8rem; background:#16a34a; color:white; text-decoration:none; border-radius:4px;">
+            Añadir sesión
+        </a>
+    </div>
+
+    {% if sesiones %}
+    <table style="width:100%; border-collapse:collapse;">
+        <thead>
+            <tr>
+                <th style="text-align:left; border-bottom:1px solid #ddd; padding:0.5rem;">ID</th>
+                <th style="text-align:left; border-bottom:1px solid #ddd; padding:0.5rem;">Duración</th>
+                <th style="text-align:right; border-bottom:1px solid #ddd; padding:0.5rem;">FC media</th>
+                <th style="text-align:right; border-bottom:1px solid #ddd; padding:0.5rem;">Calorías</th>
+                <th style="text-align:center; border-bottom:1px solid #ddd; padding:0.5rem;">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for s in sesiones %}
+            <tr>
+                <td style="padding:0.5rem; border-bottom:1px solid #f0f0f0;">
+                    <a href="{% url 'session_detail' s.id %}">Sesión {{ s.id }}</a>
+                    <

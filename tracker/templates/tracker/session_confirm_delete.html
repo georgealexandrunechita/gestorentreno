@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Eliminar sesión{% endblock %}
+{% block content %}
+<h1>¿Eliminar sesión?</h1>
+<p>{{ session }}</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Sí, eliminar</button>
+</form>
+{% endblock %}
